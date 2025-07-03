@@ -1,2 +1,13 @@
 // The Swift Programming Language
 // https://docs.swift.org/swift-book
+import Foundation
+/// Now, whenever you import SpectraComposableKit in any module, ComposableArchitecture will also be automatically imported.
+@_exported import Supabase
+
+/// Create a single supabase client for interacting with your database
+public struct SupabaseClients {
+    public static let shared = SupabaseClient(
+        supabaseURL: URL(string: "https://jnwgnmgeftbpmgnhtjna.supabase.co")!,
+        supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impud2dubWdlZnRicG1nbmh0am5hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEyNjkwMDUsImV4cCI6MjA2Njg0NTAwNX0.QAlOu-jTNU2KOdn_WaGtaGYtW-HvRiW57uM5BHj2Esk"
+    )
+}
