@@ -8,6 +8,22 @@ import Foundation
 public struct SupabaseClients {
     public static let shared = SupabaseClient(
         supabaseURL: URL(string: "https://jnwgnmgeftbpmgnhtjna.supabase.co")!,
-        supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impud2dubWdlZnRicG1nbmh0am5hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEyNjkwMDUsImV4cCI6MjA2Njg0NTAwNX0.QAlOu-jTNU2KOdn_WaGtaGYtW-HvRiW57uM5BHj2Esk"
+        supabaseKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impud2dubWdlZnRicG1nbmh0am5hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEyNjkwMDUsImV4cCI6MjA2Njg0NTAwNX0.QAlOu-jTNU2KOdn_WaGtaGYtW-HvRiW57uM5BHj2Esk",
+        options: SupabaseClientOptions(
+            db: SupabaseClientOptions.DatabaseOptions.init(
+                encoder: {
+                    let encoder = JSONEncoder()
+                    encoder.dateEncodingStrategy = .iso8601
+                    encoder.keyEncodingStrategy = .convertToSnakeCase
+                    return encoder
+                }(),
+                decoder: {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    return decoder
+                }()
+            )
+        )
     )
 }
