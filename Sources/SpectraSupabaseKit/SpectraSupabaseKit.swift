@@ -20,8 +20,12 @@ public struct SupabaseClients {
 
 public extension JSONEncoder {
     static var supabaseEncoder: JSONEncoder {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXXXX"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        
         var encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .iso8601
+        encoder.dateEncodingStrategy = .formatted(formatter)
         encoder.keyEncodingStrategy = .convertToSnakeCase
         return encoder
     }
@@ -29,8 +33,12 @@ public extension JSONEncoder {
 
 public extension JSONDecoder {
     static var supabaseDecoder: JSONDecoder {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSXXXXX"
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        
         var decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+        decoder.dateDecodingStrategy = .formatted(formatter)
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return decoder
     }
